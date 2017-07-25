@@ -1,0 +1,144 @@
+colorscheme jellybeans "테마
+
+set tabstop=4
+set shiftwidth=4
+set softtabstop=0
+set number
+set expandtab
+set smartindent
+set cindent
+
+set nocompatible
+
+syntax on "  구문강조 사용
+filetype on
+filetype indent on   " 파일 종류에 따른 구문강조
+set history=256
+set backspace=indent,eol,start
+set cursorline
+set incsearch             " 점진적으로 찾기  "
+set showmatch             " 매치되는 괄호의 반대쪽을 보여줌 "
+
+highlight Comment term=bold cterm=bold ctermfg=4 
+" 코멘트 하이라이트
+" 프로그램 시작시 플러그인 로드 "
+set lpl
+
+
+"플러그인 단축키 리매핑"
+let mapleader=","
+"Normal Mode F1~F12"
+nmap <F2> :NERDTreeToggle<CR>
+nmap <F3> :TlistToggle<CR>
+nmap <F4> :YcmDiags<CR>
+nnoremap <F12> :YcmCompleter GoToDefinition<CR>
+
+"윈도우 포커스 이동을 Ctrl + h,j,k,l로 변경"
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+"입력모드에서 ctrl + h,j,k,l로 커서 이동"
+inoremap <C-k> <Up>
+inoremap <C-j> <Down>
+inoremap <C-l> <Right>
+inoremap <C-h> <Left>
+inoremap { {}<Left><CR><CR><Up><tab>
+"NERDTree"
+"NERDTreeFind, NERDTreeToggle 실행"
+nnoremap <C-F> :NERDTreeFind<CR>
+nnoremap <Leader>n :NERDTreeToggle<CR>
+
+"vim-airline 버퍼 변경"
+nnoremap <leader>q :bp<CR>
+nnoremap <leader>w :bn<CR>
+
+"CtrlP 실행"
+nmap <leader>p :CtrlP<cr>
+
+"정의, 선언 피킹
+nnoremap <leader>g :YcmCompleter GoTo<CR>
+nnoremap <leader>gg :YcmCompleter GoToImprecise<CR>
+nnoremap <leader>d :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>t :YcmCompleter GetType<CR>
+nnoremap <leader>p :YcmCompleter GetParent<CR>
+nnoremap <leader>i :YcmCompleter GoToInclude<CR>
+nnoremap <leader>r :YcmCompleter GoToReferences<CR>
+nnoremap <leader>f :YcmCompleter FixIt<CR>
+
+" set the runtime path to include Vundle and initialize
+set nocompatible
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+ 
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" vim - ariline"
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+" Nerd Tree"
+Plugin 'scrooloose/nerdtree'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+"Plugin 'scrooloose/syntastic'
+Plugin 'ctrlp.vim'
+Plugin 'taglist-plus'
+Plugin 'Valloric/YouCompleteMe'
+
+"괄호 자동 닫기"
+Plugin 'Raimondi/delimitMate'
+
+"자바스크립트 플러그인"
+"자바스크립트 highlighting"
+Plugin 'jelera/vim-javascript-syntax'
+"자바스크립트 indenting"
+Plugin 'pangloss/vim-javascript'
+Plugin 'othree/javascript-libraries-syntax.vim' " Syntax file for JavaScript libraries
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'mxw/vim-jsx' "React JSX syntax highlighting and indenting for vim.
+
+
+call vundle#end()
+
+"for vim-airline "
+let g:airline#extensions#tabline#enabled = 1 " turn on buffer list
+set laststatus=2 " turn on bottom bar
+
+"for NERDTree "
+"NERDTree로 파일을 열면 NERDTree 창은 자동으로 닫힘"
+let NERDTreeQuitOnOpen=1
+"숨겨진 파일까지 표시"
+let NERDTreeShowHidden=1
+
+"for taglist-plus
+let Tlist_Ctags_Cmd = "/usr/bin/ctags"
+let Tlist_Inc_Winwidth = 0
+let Tlist_Exit_OnlyWindow = 0
+let Tlist_Auto_Open = 0
+
+let Tlist_Use_Right_Window = 1
+
+
+"for crtlp"
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|public$\|log$\|tmp$\|vendor$',
+  \ 'file': '\v\.(exe|so|dll)$'
+\ }
+
+
+"for YCM"
+let g:ycm_always_populate_location_list = 1
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf = 0
+"To avoid conflict snippets
+let g:ycm_key_list_select_completion = ['<TAB>', '<C-j>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<S-TAB>', '<C-k>', '<Up>']
+let g:ycm_key_list_stop_completion = ['<CR>']
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_warning_symbol = '>*'
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_echo_current_diagnostic = 1
