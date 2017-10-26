@@ -8,6 +8,10 @@ set expandtab
 set smartindent
 set cindent
 
+set clipboard+=unnamedplus
+set tenc=korea
+set enc=utf-8
+
 set nocompatible
 
 syntax on "  구문강조 사용
